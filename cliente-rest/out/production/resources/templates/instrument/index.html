@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>REST CLIENT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Cliente REST -- Programación Distribuida</h1>
+        <h2>Lista de instrumentos:</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Nombre del instrumento</th>
+            </tr>
+            <tr th:each="intrumento : ${instrumentos}">
+                <td th:text="${intrumento.instrumentId}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<h1>Formulario</h1>
+<h2>Ingreso de nuevo instrumento</h2>
+<form action="#" th:action="@{/instrument/save}" th:object="${newInstrument}" method="post">
+    <p>Nombre del instrumento: </p>
+    <input type="text" th:field="*{instrumentId}" />
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<script type="text/javascript"
+        src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

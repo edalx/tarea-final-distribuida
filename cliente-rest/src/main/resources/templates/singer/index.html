@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>REST CLIENT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Cliente REST -- Programación Distribuida</h1>
+        <h2>Lista de cantates:</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha de nacimiento</th>
+                <th>Email</th>
+                <th>Instrumentos</th>
+                <th>Albums</th>
+            </tr>
+            <tr th:each="singer : ${singers}">
+                <td th:text="${singer.id}"></td>
+                <td th:text="${singer.firstName}"></td>
+                <td th:text="${singer.lastName}"></td>
+                <td th:text="${singer.birthDate}"></td>
+                <td th:text="${singer.email}"></td>
+                <td th:href="@{/instrumentos/} + '!' + ${singer.id}">Ver</td>
+                <td th:href="@{/albums/} + '!' + ${singer.id}">Ver</td>
+            </tr>
+        </table>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <h1>Formulario</h1>
+    <h2>Ingreso de un nuevo cantante</h2>
+    <form action="#" th:action="@{/singer/save}" th:object="${newSinger}" method="post">
+        <p>Nombre: </p>
+        <input type="text" th:field="*{firstName}" />
+        <p>Apellido: </p>
+        <input type="text" th:field="*{lastName}" />
+        <p>Fecha de nacimiento: </p>
+        <input type="date" th:field="*{birthDate}" />
+        <p>Email: </p>
+        <input type="text" th:field="*{email}" />
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</div>
+<!-- /.container -->
+
+<script type="text/javascript"
+        src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
